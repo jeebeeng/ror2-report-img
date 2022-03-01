@@ -1,4 +1,4 @@
-export type EclipseLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | null
+export type EclipseLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 
 export interface RunReport {
   version: number
@@ -13,8 +13,8 @@ export interface RunReport {
 
 export interface PlayerInfo {
   name: string
-  bodyName: BodyName
-  equipment: string
+  survivor: BodyName
+  equipment: Equipment
   items: ItemData[]
   killerBodyName: BodyName
   statSheet: StatSheet
@@ -48,7 +48,7 @@ export interface StatSheet {
 
 export interface RuleBook {
   difficulty: Difficulty
-  eclipse: EclipseLevel
+  eclipseLevel: EclipseLevel
   artifacts: Artifact[]
 }
 
