@@ -7,7 +7,7 @@ export interface RunReport {
   gameEnding: GameEnding
   gameMode: GameMode
   runTime: number
-  playerInfos: PlayerInfo[]
+  playerInfo: PlayerInfo
   artifacts: Artifact[]
 }
 
@@ -40,7 +40,7 @@ export interface StatSheet {
   totalItemsCollected: number
   totalKills: number
   totalLunarPurchases: number
-  totalMinionDamageDealth: number
+  totalMinionDamageDealt: number
   totalMinionKills: number
   totalPurchases: number
   totalTurretPurchased: number
@@ -90,6 +90,8 @@ export enum Artifact {
 }
 
 export enum Item {
+  ParentEgg = 'Panula',
+  FlatHealth = 'Bison Steak',
   Syringe = "Soldier's Syringe",
   Bear = 'Tougher Times',
   Behemoth = 'Brilliant Behemoth',
@@ -254,4 +256,6 @@ export enum Equipment {
   DeathProjectile = 'Forgive Me Please'
 }
 
-export enum BodyName {}
+export enum BodyName {
+  Test = 'TEST'
+}
