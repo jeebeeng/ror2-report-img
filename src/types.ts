@@ -31,7 +31,7 @@ export interface StatSheet {
   highestStagesCompleted: number
   totalDamageDealt: number
   totalDamageTaken: number
-  totalDistanceTravelled: number
+  totalDistanceTraveled: number
   totalDronesPurchased: number
   totalEliteKills: number
   totalGoldCollected: number
@@ -43,7 +43,7 @@ export interface StatSheet {
   totalMinionDamageDealt: number
   totalMinionKills: number
   totalPurchases: number
-  totalTurretPurchased: number
+  totalTurretsPurchased: number
 }
 
 export interface RuleBook {
