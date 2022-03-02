@@ -31,7 +31,7 @@ function App() {
   const getRuleBook = (ruleBook: string): types.RuleBook => {
     const rules = ruleBook.split(' ')
     const regexpDiff = /^Difficulty\.(\w+)$/g
-    const regexpArt = /^Artifact\.(\w+)\.On$/g
+    const regexpArt = /^Artifacts\.(\w+)\.On$/g
     const regexpEcl = /Eclipse([1-8])/g
 
     let difficulty = types.Difficulty.Easy
@@ -43,17 +43,17 @@ function App() {
         let matchEcl = regexpEcl.exec(matchDiff![0])
         if (matchEcl == null) {
           eclipseLevel = 0
-          difficulty = matchDiff[1] as types.Difficulty
+          difficulty = toEnum(matchDiff[1], types.Difficulty)!
+          console.log(difficulty === types.Difficulty.Easy)
         } else {
           eclipseLevel = parseInt(matchEcl![1]) as types.EclipseLevel
           difficulty = types.Difficulty.Eclipse
         }
-        continue
-      }
-
-      let matchArt = regexpArt.exec(rule)
-      if (matchArt != null) {
-        artifacts = matchArt as types.Artifact[]
+      } else {
+        let matchArt = regexpArt.exec(rule)
+        if (matchArt != null) {
+          artifacts.push(toEnum(matchArt[1], types.Artifact)!)
+        }
       }
     }
 
