@@ -14,7 +14,7 @@ export interface RunReport {
 export interface PlayerInfo {
   name: string
   survivor: BodyName
-  equipment: Equipment
+  equipment: Equipment | null
   items: ItemData[]
   killerBodyName: BodyName
   statSheet: StatSheet
@@ -212,7 +212,54 @@ export enum Item {
   ScrapGreen = 'Item Scrap, Green',
   ScrapRed = 'Item Scrap, Red',
   ScrapYellow = 'Item Scrap, Yellow',
-  LunarBadLuck = 'Purity'
+  LunarBadLuck = 'Purity',
+  LunarSecondaryReplacement = 'Hooks of Heresy',
+  AttackSpeedAndMoveSpeed = 'Mocha',
+  PrimarySkillShuriken = 'Shuriken',
+  CritDamage = 'Laser Scope',
+  DroneWeapns = 'Spare Drone Parts',
+  MoveSpeedOnKill = "Hunter's Harpoon",
+  StrengthenBurn = 'Ignition Tank',
+  HealingPotion = 'Power Elixir',
+  HealingPotionConsumed = 'Empty Bottle',
+  PermanentDebuffOnHit = 'Symbiotic Scorpion',
+  MoreMissile = 'Pocket I.C.B.M.',
+  SkullCounter = 'Skull Token',
+  RoboBallBuddy = 'Empathy Cores',
+  LunarSpecialReplacement = 'Essence of Heresy',
+  HalfSpeedDoubleHealth = 'Stone Flux Pauldron',
+  HalfAttackSpeedHalfCooldowns = 'Light Flux Pauldron',
+  LunarWings = 'Blessings of Terafirmae',
+  RandomlyLunar = 'Eulogy Zero',
+  ImmuneToDebuff = "Ben's Raincoat",
+  RegeneratingScrap = 'Regenerating Scrap',
+  RegeneratingScrapConsumed = 'Regenerating Scrap (Consumed)',
+  CritGlassesVoid = "Lost Seer's Lenses",
+  ExplodeOnDeathVoid = 'Voidsent Flame',
+  BleedOnHitVoid = 'NeedleTick',
+  TreasuredCacheVoid = 'Encrusted Key',
+  BearVoid = 'Safer Spaces',
+  CloverVoid = 'Benthic Bloom',
+  MissileVoid = 'Plasma Shrimp',
+  MushroomVoid = 'Weeping Fungus',
+  SlowOnHitVoid = 'Tentabauble',
+  ChainLightningVoid = 'Polylute',
+  EquipmentMagazineVoid = 'Lysate Cell',
+  ExtraLifeVoid = 'Pluripotent Larva',
+  ExtraLifeVoidConsumed = 'Pluripotent Larva (Consumed)',
+  FragileDamageBonus = 'Delicate Watch',
+  FragileDamageBonusConsumed = 'Delicate Watch (Consumed)',
+  OutOfCombatArmor = 'Oddly-shaped Opal',
+  ScrapWhiteSuppressed = 'Strange Scrap, White',
+  ScrapGreenSuppressed = 'Strange Scrap, Green',
+  ScrapRedSuppressed = 'Strange Scrap, Red',
+  GoldOnHurt = 'Roll of Pennies',
+  RandomEquipmentTrigger = 'BottledChaos',
+  FreeChest = 'Shipping Request Form',
+  ElementalRingVoid = 'Singularity Band',
+  LunarSun = 'EgoCentrism',
+  MinorConstructionKill = 'Defense Nucleus',
+  VoidMegaCrabItem = 'Newly Hatched Zoea'
 }
 
 export enum Equipment {
@@ -222,10 +269,12 @@ export enum Equipment {
   SoulJar = 'Jar of Souls',
   AffixRed = "Ifrit's Distinction",
   AffixBlue = 'Silence Between Two Strikes',
-  AffixYellow = 'nan',
   AffixGold = 'Coven of Gold',
   AffixWhite = 'Her Biting Embrace',
   AffixPoison = "N'kuhana's Retort",
+  AffixLunar = 'Shared Design',
+  AffixEarth = 'His Reassurance',
+  AffixSecretSpeed = 'Beyond the Limits',
   Blackhole = 'Primordial Cube',
   GhostGun = "Reaper's Remorse",
   CritOnUse = 'Ocular HUD',
@@ -253,9 +302,30 @@ export enum Equipment {
   Recycle = 'Recycler',
   LifestealOnHit = 'Super Massive Leech',
   TeamWarCry = "Gorag's Opus",
-  DeathProjectile = 'Forgive Me Please'
+  DeathProjectile = 'Forgive Me Please',
+  Molotov = 'Molotov (6-Pack)',
+  IrradiatingLaser = 'Overloading Excavator',
+  LunarPortalOnUse = 'Elegy of Extinction',
+  VendingMachine = 'Remote Caffeeinator',
+  GummyClone = 'Goobo Jr.',
+  BossHunter = "Trophy Hunter's Tricorn",
+  BossHunterConsumed = "Trophy Hunter's Tricorn (Consumed)",
+  MultiShopCard = 'Executive Card'
 }
 
 export enum BodyName {
-  Test = 'TEST'
+  CommandoBody = 'Commando',
+  MercBody = 'Mercenary',
+  EngiBody = 'Engineer',
+  HuntressBody = 'Huntress',
+  MageBody = 'Artificer',
+  ToolBotBody = 'MULT-T',
+  TreeBotBody = 'REX',
+  LoaderBody = 'Loader',
+  CrocoBody = 'Acrid',
+  CaptainBody = 'Captain',
+  Bandit2Body = 'Bandit',
+  HereticBody = 'Heretic',
+  RailgunnerBody = 'Railgunner',
+  VoidSurvivorBody = '「V??oid Fiend』'
 }
