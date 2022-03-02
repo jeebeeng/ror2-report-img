@@ -1,6 +1,6 @@
 import React from 'react'
 import { RunReport } from '../types'
-import { createRunReport } from '../utils/run-report'
+import { createRunReport } from '../utils/runReport'
 import { XMLParser } from 'fast-xml-parser'
 
 interface FileInputProps {
