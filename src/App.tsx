@@ -30,9 +30,9 @@ function App() {
 
   const getRuleBook = (ruleBook: string): types.RuleBook => {
     const rules = ruleBook.split(' ')
-    const regexpDiff = /^Difficulty\.(\w+)\.On$/g
+    const regexpDiff = /^Difficulty\.(\w+)$/g
     const regexpArt = /^Artifact\.(\w+)\.On$/g
-    const regexpEcl = /^Eclipse(\d)$/g
+    const regexpEcl = /Eclipse([1-8])/g
 
     let difficulty = types.Difficulty.Easy
     let eclipseLevel: types.EclipseLevel = 0
@@ -41,18 +41,19 @@ function App() {
       let matchDiff = regexpDiff.exec(rule)
       if (matchDiff != null) {
         let matchEcl = regexpEcl.exec(matchDiff![0])
-        eclipseLevel = (
-          matchEcl == null ? 0 : matchEcl![0]
-        ) as types.EclipseLevel
-        difficulty = toEnum(matchDiff[0], types.Difficulty) as types.Difficulty
+        if (matchEcl == null) {
+          eclipseLevel = 0
+          difficulty = matchDiff[1] as types.Difficulty
+        } else {
+          eclipseLevel = parseInt(matchEcl![1]) as types.EclipseLevel
+          difficulty = types.Difficulty.Eclipse
+        }
         continue
       }
 
       let matchArt = regexpArt.exec(rule)
       if (matchArt != null) {
-        artifacts = matchArt.map(art => {
-          return toEnum(art, types.Artifact)
-        }) as types.Artifact[]
+        artifacts = matchArt as types.Artifact[]
       }
     }
 
@@ -68,13 +69,13 @@ function App() {
       const ruleBook = getRuleBook(obj.ruleBook)
       return {
         version: obj.version,
-        difficulty: ruleBook.difficulty,
-        eclipse: ruleBook.eclipseLevel,
         gameEnding: obj.gameEnding,
         gameMode: obj.gameModeName,
         runTime: obj.runStopwatchValue,
-        playerInfos: [],
-        artifacts: ruleBook.artifacts
+        difficulty: ruleBook.difficulty,
+        eclipseLevel: ruleBook.eclipseLevel,
+        artifacts: ruleBook.artifacts,
+        playerInfos: []
       }
     } catch (err) {
       console.log(err)
