@@ -145,7 +145,10 @@ const getPlayerInfo = (info: any): types.PlayerInfo => {
   const player = {
     name: info.name,
     survivor: toEnum(info.bodyName, types.Survivor)!,
-    equipment: toEnum(info.equipment, types.Equipment)!,
+    equipment:
+      info.equipment === types.Equipment.NoEquipment
+        ? types.Equipment.NoEquipment
+        : toEnum(info.equipment, types.Equipment)!,
     items,
     killerBodyName: toEnum(info.killerBodyName, types.BodyName)!,
     statSheet

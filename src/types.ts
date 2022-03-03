@@ -267,6 +267,7 @@ export enum Item {
 }
 
 export enum Equipment {
+  NoEquipment = '',
   CommandMissile = 'Disposable Missile Launcher',
   Fruit = 'Foreign Fruit',
   Meteor = 'Glowing Meteorite',
