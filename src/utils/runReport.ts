@@ -1,6 +1,16 @@
 import * as types from '../types'
 import { toEnum } from './enumUtils'
 
+const INVALID_ERROR = 'Invalid Report'
+
+const checkInvalid = (obj: any) => {
+  Object.values(obj).forEach(value => {
+    if (value === null || value === undefined) {
+      throw new Error(INVALID_ERROR)
+    }
+  })
+}
+
 const getRuleBook = (ruleBook: string): types.RuleBook => {
   const rules = ruleBook.split(' ')
   const regexpDiff = /^Difficulty\.(\w+)$/g
@@ -9,14 +19,14 @@ const getRuleBook = (ruleBook: string): types.RuleBook => {
 
   let book: any = {}
 
-  let difficulty = types.Difficulty.Easy
+  let difficulty: types.Difficulty | null = null
   let eclipseLevel: types.EclipseLevel | null = null
   let artifacts: types.Artifact[] = []
   for (const rule of rules) {
     let matchDiff = regexpDiff.exec(rule)
-    if (matchDiff != null) {
+    if (matchDiff !== null) {
       let matchEcl = regexpEcl.exec(matchDiff![0])
-      if (matchEcl == null) {
+      if (matchEcl === null) {
         difficulty = toEnum(matchDiff[1], types.Difficulty)!
       } else {
         eclipseLevel = parseInt(matchEcl![1]) as types.EclipseLevel
@@ -24,7 +34,7 @@ const getRuleBook = (ruleBook: string): types.RuleBook => {
       }
     } else {
       let matchArt = regexpArt.exec(rule)
-      if (matchArt != null) {
+      if (matchArt !== null) {
         artifacts.push(toEnum(matchArt[1], types.Artifact)!)
       }
     }
@@ -32,8 +42,12 @@ const getRuleBook = (ruleBook: string): types.RuleBook => {
 
   book.difficulty = difficulty
   book.artifacts = artifacts
-  if (eclipseLevel != null) {
+  if (eclipseLevel !== null) {
     book.eclipseLevel = eclipseLevel
+  }
+
+  if (difficulty === null) {
+    throw new Error(INVALID_ERROR)
   }
 
   return book as types.RuleBook
@@ -101,11 +115,17 @@ const getStatSheet = (sheet: any): types.StatSheet => {
     stats.highestStagesCompleted = sheet.highestStagesCompleted
   }
 
+  checkInvalid(stats)
+
   return stats
 }
 
 const getItems = (itemOrder: string, itemStacks: any): types.ItemData[] => {
   return itemOrder.split(' ').map(item => {
+    const stacks = itemStacks[item]
+    if (!stacks) {
+      throw new Error(INVALID_ERROR)
+    }
     return {
       name: toEnum(item, types.Item)!,
       count: itemStacks[item]
@@ -122,8 +142,7 @@ const getPlayerInfos = (infos: any): types.PlayerInfo[] => {
 const getPlayerInfo = (info: any): types.PlayerInfo => {
   const statSheet = getStatSheet(info.statSheet.fields)
   const items = getItems(info.itemAcquisitionOrder, info.itemStacks)
-
-  return {
+  const player = {
     name: info.name,
     survivor: toEnum(info.bodyName, types.Survivor)!,
     equipment: toEnum(info.equipment, types.Equipment)!,
@@ -131,6 +150,10 @@ const getPlayerInfo = (info: any): types.PlayerInfo => {
     killerBodyName: toEnum(info.killerBodyName, types.BodyName)!,
     statSheet
   }
+
+  checkInvalid(player)
+
+  return player
 }
 
 export const createRunReport = (obj: any): types.RunReport | null => {
@@ -153,6 +176,8 @@ export const createRunReport = (obj: any): types.RunReport | null => {
     if (ruleBook.hasOwnProperty('EclipseLevel')) {
       report.EclipseLevel = ruleBook.eclipseLevel
     }
+
+    checkInvalid(report)
 
     return report
   } catch (err) {
