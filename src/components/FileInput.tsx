@@ -14,14 +14,16 @@ const FileInput: React.FC<FileInputProps> = ({ setReport }) => {
     reader.onload = e => {
       const parser = new XMLParser()
       const xmlStr = e.target!.result
-
       const jObj = parser.parse(xmlStr as string)
       const report = createRunReport(jObj.RunReport)!
-      setReport(report)
       console.log(jObj)
       console.log(report)
+      setReport(report)
     }
-    reader.readAsText(e.target.files![0])
+
+    if (e.target.files![0]) {
+      reader.readAsText(e.target.files![0])
+    }
   }
 
   return <input type="file" accept=".xml" onChange={showFile} />
