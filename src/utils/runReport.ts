@@ -156,32 +156,25 @@ const getPlayerInfo = (info: any): types.PlayerInfo => {
   return player
 }
 
-export const createRunReport = (obj: any): types.RunReport | null => {
-  try {
-    const ruleBook = getRuleBook(obj.ruleBook)
-    const playerInfo: types.PlayerInfo = getPlayerInfo(
-      obj.playerInfos.PlayerInfo
-    )
+export const createRunReport = (obj: any): types.RunReport => {
+  const ruleBook = getRuleBook(obj.ruleBook)
+  const playerInfo: types.PlayerInfo = getPlayerInfo(obj.playerInfos.PlayerInfo)
 
-    let report: any = {
-      version: obj.version,
-      gameEnding: obj.gameEnding,
-      gameMode: obj.gameModeName,
-      runTime: obj.runStopwatchValue,
-      difficulty: ruleBook.difficulty,
-      artifacts: ruleBook.artifacts,
-      playerInfo
-    }
-
-    if (ruleBook.hasOwnProperty('EclipseLevel')) {
-      report.EclipseLevel = ruleBook.eclipseLevel
-    }
-
-    checkInvalid(report)
-
-    return report
-  } catch (err) {
-    console.log(err)
-    return null
+  let report: any = {
+    version: obj.version,
+    gameEnding: obj.gameEnding,
+    gameMode: obj.gameModeName,
+    runTime: obj.runStopwatchValue,
+    difficulty: ruleBook.difficulty,
+    artifacts: ruleBook.artifacts,
+    playerInfo
   }
+
+  if (ruleBook.hasOwnProperty('EclipseLevel')) {
+    report.EclipseLevel = ruleBook.eclipseLevel
+  }
+
+  checkInvalid(report)
+
+  return report
 }
