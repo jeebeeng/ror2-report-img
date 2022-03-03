@@ -1,29 +1,39 @@
-import { Artifact, BodyName, Difficulty, EclipseLevel, Equipment, Item, Survivor } from "../types";
+import {
+  Artifact,
+  BodyName,
+  Difficulty,
+  EclipseLevel,
+  Equipment,
+  Item,
+  Survivor
+} from '../types'
+
+const imagePath = process.env.PUBLIC_URL + '/images/'
 
 export const artifactImg = (name: Artifact): string => {
-  return '../images/artifacts/Artifact_of_' + name + '.png'
+  return imagePath + 'artifacts/Artifact_of_' + name + '.png'
 }
 
 export const bodyNameImg = (name: BodyName): string => {
-  return '../images/bodies/' + name.replace(' ', '_') + '.png'
+  return imagePath + 'bodies/' + name.replace(' ', '_') + '.png'
 }
 
 export const difficultyImg = (name: Difficulty): string => {
-  return '../images/difficulty/' + name + '.png'
+  return imagePath + 'difficulty/' + name + '.png'
 }
 
 export const eclipseImg = (level: EclipseLevel): string => {
-  return '../images/eclipse/Eclipse' + level + '.png'
+  return imagePath + 'eclipse/Eclipse' + level + '.png'
 }
 
 export const equipmentImg = (name: Equipment): string => {
-  return '../images/equipment/' + name.replace(' ', '_') + '.png'
+  return imagePath + 'equipment/' + name.replace(' ', '_') + '.png'
 }
 
 export const itemImg = (name: Item): string => {
-  return '../images/items/' + name.replace(' ', '_') + '.png'
+  return imagePath + 'items/' + name.replace(' ', '_') + '.png'
 }
 
 export const survivorImg = (name: Survivor): string => {
-  return '../images/survivors/' + name.replace(' ', '_') + '.png'
+  return imagePath + 'survivors/' + name.replace(' ', '_') + '.png'
 }
