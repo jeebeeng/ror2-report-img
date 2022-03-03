@@ -216,7 +216,6 @@ export enum Item {
   ScrapRed = 'Item Scrap, Red',
   ScrapYellow = 'Item Scrap, Yellow',
   LunarBadLuck = 'Purity',
-
   LunarSecondaryReplacement = 'Hooks of Heresy',
   AttackSpeedAndMoveSpeed = 'Mocha',
   PrimarySkillShuriken = 'Shuriken',
@@ -263,7 +262,8 @@ export enum Item {
   ElementalRingVoid = 'Singularity Band',
   LunarSun = 'EgoCentrism',
   MinorConstructionKill = 'Defense Nucleus',
-  VoidMegaCrabItem = 'Newly Hatched Zoea'
+  VoidMegaCrabItem = 'Newly Hatched Zoea',
+  ConvertCritChangeToCritDamage = 'RAILGUNNER PASSIVE'
 }
 
 export enum Equipment {
