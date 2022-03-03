@@ -125,7 +125,7 @@ const getPlayerInfo = (info: any): types.PlayerInfo => {
 
   return {
     name: info.name,
-    survivor: toEnum(info.bodyName, types.BodyName)!,
+    survivor: toEnum(info.bodyName, types.Survivor)!,
     equipment: toEnum(info.equipment, types.Equipment)!,
     items,
     killerBodyName: toEnum(info.killerBodyName, types.BodyName)!,

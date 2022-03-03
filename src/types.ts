@@ -13,7 +13,7 @@ export interface RunReport {
 
 export interface PlayerInfo {
   name: string
-  survivor: BodyName
+  survivor: Survivor
   equipment: Equipment | null
   items: ItemData[]
   killerBodyName: BodyName
@@ -315,6 +315,23 @@ export enum Equipment {
   BossHunter = "Trophy Hunter's Tricorn",
   BossHunterConsumed = "Trophy Hunter's Tricorn (Consumed)",
   MultiShopCard = 'Executive Card'
+}
+
+export enum Survivor {
+  CommandoBody = 'Commando',
+  MercBody = 'Mercenary',
+  EngiBody = 'Engineer',
+  HuntressBody = 'Huntress',
+  MageBody = 'Artificer',
+  ToolBotBody = 'MULT-T',
+  TreeBotBody = 'REX',
+  LoaderBody = 'Loader',
+  CrocoBody = 'Acrid',
+  CaptainBody = 'Captain',
+  Bandit2Body = 'Bandit',
+  HereticBody = 'Heretic',
+  RailgunnerBody = 'Railgunner',
+  VoidSurvivorBody = 'Void Fiend'
 }
 
 export enum BodyName {
