@@ -335,6 +335,7 @@ export enum Survivor {
 }
 
 export enum BodyName {
+  InvalidBody = 'INVALID_BODY',
   // Survivors
   CommandoBody = 'Commando',
   MercBody = 'Mercenary',
