@@ -7,15 +7,16 @@ const getRuleBook = (ruleBook: string): types.RuleBook => {
   const regexpArt = /^Artifacts\.(\w+)\.On$/g
   const regexpEcl = /Eclipse([1-8])/g
 
+  let book: any = {}
+
   let difficulty = types.Difficulty.Easy
-  let eclipseLevel: types.EclipseLevel = 0
+  let eclipseLevel: types.EclipseLevel | null = null
   let artifacts: types.Artifact[] = []
   for (const rule of rules) {
     let matchDiff = regexpDiff.exec(rule)
     if (matchDiff != null) {
       let matchEcl = regexpEcl.exec(matchDiff![0])
       if (matchEcl == null) {
-        eclipseLevel = 0
         difficulty = toEnum(matchDiff[1], types.Difficulty)!
       } else {
         eclipseLevel = parseInt(matchEcl![1]) as types.EclipseLevel
@@ -29,24 +30,23 @@ const getRuleBook = (ruleBook: string): types.RuleBook => {
     }
   }
 
-  return {
-    difficulty,
-    eclipseLevel,
-    artifacts
+  book.difficulty = difficulty
+  book.artifacts = artifacts
+  if (eclipseLevel != null) {
+    book.eclipseLevel = eclipseLevel
   }
+
+  return book as types.RuleBook
 }
 
 const getStatSheet = (sheet: any): types.StatSheet => {
-  return {
+  let stats: types.StatSheet = {
     highestDamageDealt: !sheet.hasOwnProperty('highestDamageDealt')
       ? 0
       : sheet.highestDamageDealt,
     highestLevel: !sheet.hasOwnProperty('highestLevel')
       ? 0
       : sheet.highestLevel,
-    highestStagesCompleted: !sheet.hasOwnProperty('highestStagesCompleted')
-      ? 0
-      : sheet.highestStagesCompleted,
     totalDamageDealt: !sheet.hasOwnProperty('totalDamageDealt')
       ? 0
       : sheet.totalDamageDealt,
@@ -91,6 +91,17 @@ const getStatSheet = (sheet: any): types.StatSheet => {
       ? 0
       : sheet.totalTurretsPurchased
   }
+
+  if (sheet.hasOwnProperty('highestInfiniteTowerWaveReached')) {
+    stats.highestInfiniteTowerWaveReached =
+      sheet.highestInfiniteTowerWaveReached
+  }
+
+  if (sheet.hasOwnProperty('highestStagesCompleted')) {
+    stats.highestStagesCompleted = sheet.highestStagesCompleted
+  }
+
+  return stats
 }
 
 const getItems = (itemOrder: string, itemStacks: any): types.ItemData[] => {
@@ -129,16 +140,21 @@ export const createRunReport = (obj: any): types.RunReport | null => {
       obj.playerInfos.PlayerInfo
     )
 
-    return {
+    let report: any = {
       version: obj.version,
       gameEnding: obj.gameEnding,
       gameMode: obj.gameModeName,
       runTime: obj.runStopwatchValue,
       difficulty: ruleBook.difficulty,
-      eclipseLevel: ruleBook.eclipseLevel,
       artifacts: ruleBook.artifacts,
       playerInfo
     }
+
+    if (ruleBook.hasOwnProperty('EclipseLevel')) {
+      report.EclipseLevel = ruleBook.eclipseLevel
+    }
+
+    return report
   } catch (err) {
     console.log(err)
     return null

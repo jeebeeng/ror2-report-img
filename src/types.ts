@@ -1,9 +1,9 @@
-export type EclipseLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+export type EclipseLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 
 export interface RunReport {
   version: number
   difficulty: Difficulty
-  eclipseLevel: EclipseLevel
+  eclipseLevel?: EclipseLevel
   gameEnding: GameEnding
   gameMode: GameMode
   runTime: number
@@ -28,7 +28,6 @@ export interface ItemData {
 export interface StatSheet {
   highestDamageDealt: number
   highestLevel: number
-  highestStagesCompleted: number
   totalDamageDealt: number
   totalDamageTaken: number
   totalDistanceTraveled: number
@@ -44,11 +43,13 @@ export interface StatSheet {
   totalMinionKills: number
   totalPurchases: number
   totalTurretsPurchased: number
+  highestStagesCompleted?: number
+  highestInfiniteTowerWaveReached?: number
 }
 
 export interface RuleBook {
   difficulty: Difficulty
-  eclipseLevel: EclipseLevel
+  eclipseLevel?: EclipseLevel
   artifacts: Artifact[]
 }
 
@@ -61,7 +62,8 @@ export enum Difficulty {
 
 export enum GameMode {
   EclipseRun = 'Eclipse',
-  ClassicRun = 'Classic'
+  ClassicRun = 'Classic',
+  InfiniteTowerRun = 'Simulacrum'
 }
 
 export enum GameEnding {
