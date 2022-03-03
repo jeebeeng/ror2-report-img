@@ -165,8 +165,8 @@ export const createRunReport = (obj: any): types.RunReport => {
 
   let report: any = {
     version: obj.version,
-    gameEnding: obj.gameEnding,
-    gameMode: obj.gameModeName,
+    gameEnding: toEnum(obj.gameEnding, types.GameEnding),
+    gameMode: toEnum(obj.gameModeName, types.GameMode),
     runTime: obj.runStopwatchValue,
     difficulty: ruleBook.difficulty,
     artifacts: ruleBook.artifacts,
