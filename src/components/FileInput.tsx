@@ -21,7 +21,7 @@ const FileInput: React.FC<FileInputProps> = ({ setReport }) => {
     reader.readAsText(e.target.files![0])
   }
 
-  return <input type="file" onChange={showFile} />
+  return <input type="file" accept=".xml" onChange={showFile} />
 }
 
 export default FileInput
