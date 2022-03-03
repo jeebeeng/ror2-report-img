@@ -15,8 +15,11 @@ const FileInput: React.FC<FileInputProps> = ({ setReport }) => {
       const parser = new XMLParser()
       const xmlStr = e.target!.result
 
-      let jObj = parser.parse(xmlStr as string)
-      setReport(createRunReport(jObj.RunReport)!)
+      const jObj = parser.parse(xmlStr as string)
+      const report = createRunReport(jObj.RunReport)!
+      setReport(report)
+      console.log(jObj)
+      console.log(report)
     }
     reader.readAsText(e.target.files![0])
   }
