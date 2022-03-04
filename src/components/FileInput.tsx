@@ -27,6 +27,7 @@ const FileInput: React.FC<FileInputProps> = ({ setReport, setError }) => {
         setError(false)
         setReport(report)
       } catch (err) {
+        setReport(null)
         setError(true)
       }
     }
