@@ -55,7 +55,7 @@ const Artifacts: React.FC<ArtifactsProps> = ({ artifacts }) => {
   return (
     <div className="flex flex-col items-center mt-3">
       <Header text="Artifacts" />
-      <div className="flex flex-row grid-cols-4">
+      <div className="flex flex-row flex-wrap w-64 justify-center">
         {artifacts.map(artifact => {
           return (
             <img
@@ -89,7 +89,7 @@ const Stats: React.FC<StatsProps> = ({
   return (
     <div className="mt-3">
       <Header text="Stats" />
-      <div className="flex flex-row justify-between pb-2">
+      <div className="flex flex-row justify-between pb-1">
         <p className="mt-4 text-white">{difficulty}</p>
         <img
           className="h-10"
@@ -118,7 +118,7 @@ const Items: React.FC<ItemsProps> = ({ items }) => {
   return (
     <div className="mt-3">
       <Header text="Items" />
-      <div className="flex flex-wrap content-evenly">
+      <div className="flex flex-row flex-wrap">
         {items.map(item => {
           return <ItemIcon item={item} key={item.name} />
         })}
