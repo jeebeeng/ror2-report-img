@@ -1,10 +1,14 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        14: 'repeat(14, minmax(0, 1fr))'
+      }
+    },
     fontFamily: {
       rubik: ['Rubik'],
-      'source-sans': ['Source-Sans-Pro']
+      roboto: ['Roboto Mono']
     }
   },
   plugins: []
