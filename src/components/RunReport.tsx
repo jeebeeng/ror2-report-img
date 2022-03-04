@@ -49,12 +49,12 @@ interface ItemsProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ text }) => {
-  return <h3 className="text-center font-bold text-white mt-1">{text}</h3>
+  return <h3 className="text-center font-bold text-white mb-1">{text}</h3>
 }
 
 const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
   return (
-    <div className="flex flex-row justify-between pb-2">
+    <div className="flex flex-row justify-between pb-1 pt-4">
       <div className="flex flex-row mt-2">
         <img
           className="h-16 mt-2"
@@ -66,7 +66,7 @@ const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
       {killer && (
         <div className="flex flex-col items-center pt-1">
           <p className="text-white text-sm">Killed By: </p>
-          <p className="text-yellow-300 text-sm">{killer}</p>
+          <p className="text-yellow-300 text-sm mb-1">{killer}</p>
           <img className="h-12" src={path.bodyNameImg(killer)} alt={killer} />
         </div>
       )}
@@ -76,9 +76,9 @@ const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
 
 const Artifacts: React.FC<ArtifactsProps> = ({ artifacts }) => {
   return (
-    <div className="flex flex-col items-center mt-3 mb-0 pb-0">
+    <div className="flex flex-col items-center mt-1">
       <Header text="Artifacts" />
-      <div className="flex flex-row flex-wrap w-64 justify-center">
+      <div className="flex flex-row flex-wrap w-64 mt-1 justify-center">
         {artifacts.map(artifact => {
           return (
             <img
@@ -137,7 +137,7 @@ const Stats: React.FC<StatsProps> = ({
   stats
 }) => {
   return (
-    <div className="mt-3">
+    <div className="mt-1">
       <Header text="Stats" />
       <Difficulty difficulty={difficulty} eclipseLevel={eclipseLevel} />
       <StatLine label="Time Alive" value={String(formatRunTime(runTime))} />
@@ -174,18 +174,18 @@ const Items: React.FC<ItemsProps> = ({ items }) => {
 const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
   const renderTitle = () => {
     if (text === types.GameMode.InfiniteTowerRun) {
-      return <h1 className="text-pink-700 text-5xl">{text.toUpperCase()}</h1>
+      return <h1 className="text-pink-700 text-4xl">{text.toUpperCase()}</h1>
     } else if (text === types.GameEnding.MainEnding) {
       return <h1 className="text-lime-500 text-5xl">{text.toUpperCase()}</h1>
     } else if (text === types.GameEnding.ObliterationEnding) {
-      return <h1 className="text-sky-700 text-[42px]">{text.toUpperCase()}</h1>
+      return <h1 className="text-sky-700 text-4xl">{text.toUpperCase()}</h1>
     } else {
       return <h1 className="text-red-800 text-5xl">{text.toUpperCase()}</h1>
     }
   }
 
   return (
-    <div className="text-center font-bold mb-1 mt-2 tracking-wide">
+    <div className="text-center font-bold mb-1 tracking-wide">
       {renderTitle()}
     </div>
   )
@@ -193,7 +193,7 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
 
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
-    <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-2 pb-4 mt-1 mb-3 rounded-md">
+    <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-1 pb-4 rounded-md">
       <ReportTitle
         text={
           report.gameMode === types.GameMode.InfiniteTowerRun
