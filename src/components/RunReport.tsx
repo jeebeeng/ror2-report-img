@@ -171,20 +171,17 @@ const Items: React.FC<ItemsProps> = ({ items }) => {
 }
 
 const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
-  return (
-    <h1 className="text-center text-5xl mb-4 font-rubik">
-      {text.toUpperCase()}
-    </h1>
-  )
+  return <h1 className="text-center text-5xl mb-2 mt-2">{text}</h1>
 }
+
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
-    <div className="font-roboto w-96 bg-slate-800 px-2 pt-2 pb-3 my-2 rounded-xl">
+    <div className="font-roboto w-96 bg-report px-2 pt-2 pb-3 my-2 rounded-xl">
       <ReportTitle
         text={
           report.gameMode === types.GameMode.InfiniteTowerRun
-            ? 'Simulacrum'
-            : report.gameEnding
+            ? report.gameMode.toUpperCase()
+            : report.gameEnding.toUpperCase()
         }
       />
       <Character
