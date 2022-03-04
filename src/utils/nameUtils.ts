@@ -7,19 +7,20 @@ import {
   Item,
   Survivor
 } from '../types'
+import { fileName } from './stringUtils'
 
 const imagePath = process.env.PUBLIC_URL + '/images/'
 
 export const artifactImg = (name: Artifact): string => {
-  return imagePath + 'artifacts/Artifact_of_' + name + '.png'
+  return imagePath + 'artifacts/Artifact_of_' + fileName(name) + '.png'
 }
 
 export const bodyNameImg = (name: BodyName): string => {
-  return imagePath + 'bodies/' + name.replaceAll(' ', '_') + '.png'
+  return imagePath + 'bodies/' + fileName(name) + '.png'
 }
 
 export const difficultyImg = (name: Difficulty): string => {
-  return imagePath + 'difficulty/' + name + '.png'
+  return imagePath + 'difficulty/' + fileName(name) + '.png'
 }
 
 export const eclipseImg = (level: EclipseLevel): string => {
@@ -27,13 +28,14 @@ export const eclipseImg = (level: EclipseLevel): string => {
 }
 
 export const equipmentImg = (name: Equipment): string => {
-  return imagePath + 'equipment/' + name.replaceAll(' ', '_') + '.png'
+  return imagePath + 'equipment/' + fileName(name) + '.png'
 }
 
 export const itemImg = (name: Item): string => {
-  return imagePath + 'items/' + name.replaceAll(' ', '_') + '.png'
+  console.log(fileName(name))
+  return imagePath + 'items/' + fileName(name) + '.png'
 }
 
 export const survivorImg = (name: Survivor): string => {
-  return imagePath + 'survivors/' + name.replaceAll(' ', '_') + '.png'
+  return imagePath + 'survivors/' + fileName(name) + '.png'
 }
