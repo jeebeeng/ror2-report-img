@@ -87,7 +87,7 @@ export enum Artifact {
   SingleMonsterType = 'Kin',
   Swarms = 'Swarms',
   TeamDeath = 'Death',
-  WeakAssKnees = 'Fraility',
+  WeakAssKnees = 'Frailty',
   WispOnDeath = 'Soul'
 }
 
