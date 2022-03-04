@@ -45,20 +45,23 @@ interface ItemsProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ text }) => {
-  return <h3 className="text-center font-bold text-white">{text}</h3>
+  return <h3 className="text-center font-bold text-white mb-1 mt-1">{text}</h3>
 }
 
 const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
   return (
-    <div className="flex flex-row justify-between">
-      <img
-        className="h-16 mt-2"
-        src={path.survivorImg(survivor)}
-        alt={survivor}
-      />
+    <div className="flex flex-row justify-between pb-2">
+      <div className="flex flex-row">
+        <img
+          className="h-16 mt-2"
+          src={path.survivorImg(survivor)}
+          alt={survivor}
+        />
+        <p className="text-white font-bold mt-12 ml-2">{survivor}</p>
+      </div>
       {killer && (
-        <div>
-          <p className="text-white">Killed By:</p>
+        <div className="flex flex-col items-center">
+          <p className="text-white text-sm">Killed By: </p>
           <img className="h-12" src={path.bodyNameImg(killer)} alt={killer} />
         </div>
       )}
@@ -100,17 +103,19 @@ const Difficulty: React.FC<DifficultyProps> = ({
   eclipseLevel
 }) => {
   return (
-    <div className="flex flex-row justify-between pb-1">
-      <p className="mt-4 text-white">{difficulty}</p>
+    <div className="flex flex-row justify-between">
+      <p className="mt-2 mb-1 text-white">
+        {difficulty} {eclipseLevel ? eclipseLevel : ''}
+      </p>
       {eclipseLevel ? (
         <img
-          className="h-10"
+          className="h-9"
           src={path.eclipseImg(eclipseLevel)}
           alt="eclipseLevel"
         />
       ) : (
         <img
-          className="h-10"
+          className="h-9"
           src={path.difficultyImg(difficulty)}
           alt={difficulty}
         />
@@ -133,16 +138,17 @@ const Stats: React.FC<StatsProps> = ({
       <StatLine label="Time Alive" value={String(formatRunTime(runTime))} />
       {gameMode === types.GameMode.InfiniteTowerRun ? (
         <StatLine
-          label="Wave:"
+          label="Wave"
           value={String(stats.highestInfiniteTowerWaveReached)}
         />
       ) : (
-        <StatLine
-          label="Highest Stage"
-          value={String(stats.highestStagesCompleted)}
-        />
+        <StatLine label="Stage" value={String(stats.highestStagesCompleted)} />
       )}
       <StatLine label="Kills" value={String(stats.totalKills)} />
+      <StatLine
+        label="Highest DMG Dealt"
+        value={String(stats.highestDamageDealt)}
+      />
     </div>
   )
 }
@@ -162,7 +168,7 @@ const Items: React.FC<ItemsProps> = ({ items }) => {
 
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
-    <div className="w-96 bg-slate-800 px-2 pt-2 pb-3 my-2 rounded-xl">
+    <div className="font-roboto w-96 bg-slate-800 px-2 pt-2 pb-3 my-2 rounded-xl">
       <Character
         survivor={report.playerInfo.survivor}
         killer={
