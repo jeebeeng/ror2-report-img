@@ -13,9 +13,9 @@ const checkInvalid = (obj: any) => {
 
 const getRuleBook = (ruleBook: string): types.RuleBook => {
   const rules = ruleBook.split(' ')
-  const regexpDiff = /^Difficulty\.(\w+)$/g
-  const regexpArt = /^Artifacts\.(\w+)\.On$/g
-  const regexpEcl = /Eclipse([1-8])/g
+  const regexpDiff = /Difficulty\.(\w+)/
+  const regexpArt = /Artifacts\.(\w+)\.On/
+  const regexpEcl = /Eclipse([1-8])/
 
   let book: any = {}
 
@@ -25,7 +25,7 @@ const getRuleBook = (ruleBook: string): types.RuleBook => {
   for (const rule of rules) {
     let matchDiff = regexpDiff.exec(rule)
     if (matchDiff !== null) {
-      let matchEcl = regexpEcl.exec(matchDiff![0])
+      const matchEcl = regexpEcl.exec(matchDiff![0])
       if (matchEcl === null) {
         difficulty = toEnum(matchDiff[1], types.Difficulty)!
       } else {
@@ -33,7 +33,8 @@ const getRuleBook = (ruleBook: string): types.RuleBook => {
         difficulty = types.Difficulty.Eclipse
       }
     } else {
-      let matchArt = regexpArt.exec(rule)
+      const matchArt = regexpArt.exec(rule)
+      console.log(rule, matchArt)
       if (matchArt !== null) {
         artifacts.push(toEnum(matchArt[1], types.Artifact)!)
       }
