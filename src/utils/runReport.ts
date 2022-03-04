@@ -34,7 +34,6 @@ const getRuleBook = (ruleBook: string): types.RuleBook => {
       }
     } else {
       const matchArt = regexpArt.exec(rule)
-      console.log(rule, matchArt)
       if (matchArt !== null) {
         artifacts.push(toEnum(matchArt[1], types.Artifact)!)
       }
@@ -174,8 +173,8 @@ export const createRunReport = (obj: any): types.RunReport => {
     playerInfo
   }
 
-  if (ruleBook.hasOwnProperty('EclipseLevel')) {
-    report.EclipseLevel = ruleBook.eclipseLevel
+  if (ruleBook.hasOwnProperty('eclipseLevel')) {
+    report.eclipseLevel = ruleBook.eclipseLevel
   }
 
   checkInvalid(report)
