@@ -49,7 +49,7 @@ interface ItemsProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ text }) => {
-  return <h3 className="text-center font-bold text-white mb-1 mt-1">{text}</h3>
+  return <h3 className="text-center font-bold text-white mt-1">{text}</h3>
 }
 
 const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
@@ -178,14 +178,14 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
     } else if (text === types.GameEnding.MainEnding) {
       return <h1 className="text-lime-500 text-5xl">{text.toUpperCase()}</h1>
     } else if (text === types.GameEnding.ObliterationEnding) {
-      return <h1 className="text-teal-700 text-[42px]">{text.toUpperCase()}</h1>
+      return <h1 className="text-sky-700 text-[42px]">{text.toUpperCase()}</h1>
     } else {
       return <h1 className="text-red-800 text-5xl">{text.toUpperCase()}</h1>
     }
   }
 
   return (
-    <div className="text-center font-bold mb-2 mt-4 tracking-wide">
+    <div className="text-center font-bold mb-1 mt-2 tracking-wide">
       {renderTitle()}
     </div>
   )
@@ -193,7 +193,7 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
 
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
-    <div className="bg-white">
+    <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-2 pb-4 mt-1 mb-3 rounded-md">
       <ReportTitle
         text={
           report.gameMode === types.GameMode.InfiniteTowerRun
@@ -201,27 +201,25 @@ const Report: React.FC<RunReportProps> = ({ report }) => {
             : report.gameEnding
         }
       />
-      <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-2 pb-3 my-2 rounded-md border-black border-4">
-        <Character
-          survivor={report.playerInfo.survivor}
-          killer={
-            report.playerInfo.killerBodyName !== types.BodyName.InvalidBody
-              ? report.playerInfo.killerBodyName
-              : null
-          }
-        />
-        {report.artifacts.length > 0 ? (
-          <Artifacts artifacts={report.artifacts} />
-        ) : null}
-        <Stats
-          runTime={report.runTime}
-          gameMode={report.gameMode}
-          difficulty={report.difficulty}
-          eclipseLevel={report.eclipseLevel ? report.eclipseLevel : null}
-          stats={report.playerInfo.statSheet}
-        />
-        <Items items={report.playerInfo.items} />
-      </div>
+      <Character
+        survivor={report.playerInfo.survivor}
+        killer={
+          report.playerInfo.killerBodyName !== types.BodyName.InvalidBody
+            ? report.playerInfo.killerBodyName
+            : null
+        }
+      />
+      {report.artifacts.length > 0 ? (
+        <Artifacts artifacts={report.artifacts} />
+      ) : null}
+      <Stats
+        runTime={report.runTime}
+        gameMode={report.gameMode}
+        difficulty={report.difficulty}
+        eclipseLevel={report.eclipseLevel ? report.eclipseLevel : null}
+        stats={report.playerInfo.statSheet}
+      />
+      <Items items={report.playerInfo.items} />
     </div>
   )
 }
