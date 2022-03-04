@@ -149,10 +149,13 @@ const Stats: React.FC<StatsProps> = ({
       ) : (
         <StatLine label="Stage" value={String(stats.highestStagesCompleted)} />
       )}
-      <StatLine label="Kills" value={String(stats.totalKills)} />
+      <StatLine
+        label="Kills"
+        value={stats.totalKills.toLocaleString('en-US')}
+      />
       <StatLine
         label="Highest DMG Dealt"
-        value={String(stats.highestDamageDealt)}
+        value={stats.highestDamageDealt.toLocaleString('en-US')}
       />
     </div>
   )
