@@ -123,16 +123,44 @@ const getStatSheet = (sheet: any): types.StatSheet => {
 }
 
 const getItems = (itemOrder: string, itemStacks: any): types.ItemData[] => {
-  return itemOrder.split(' ').map(item => {
-    const stacks = itemStacks[item]
-    if (!stacks) {
-      throw new Error(INVALID_ERROR)
-    }
-    return {
-      name: toEnum(item, types.Item)!,
-      count: itemStacks[item]
-    }
-  })
+  const badItems = [
+    types.Item.AACannon,
+    types.Item.PlasmaCore,
+    types.Item.LevelBonus,
+    types.Item.TempestOnKill,
+    types.Item.WarCryOnCombat,
+    types.Item.PlantOnHit,
+    types.Item.MageAttunement,
+    types.Item.BoostHp,
+    types.Item.BurnNearby,
+    types.Item.CritHeal,
+    types.Item.CrippleWardOnLevel,
+    types.Item.Ghost,
+    types.Item.HealthDecay,
+    types.Item.DrizzlePlayerHelper,
+    types.Item.MonsoonPlayerHelper,
+    types.Item.InvadingDoppelganger,
+    types.Item.CutHp,
+    types.Item.BoostAttackSpeed,
+    types.Item.AdaptiveArmor,
+    types.Item.ConvertCritChanceToCritDamage
+  ] as string[]
+
+  return itemOrder
+    .split(' ')
+    .filter(item => {
+      return !badItems.includes(toEnum(item, types.Item)!)
+    })
+    .map(item => {
+      const stacks = itemStacks[item]
+      if (!stacks) {
+        throw new Error(INVALID_ERROR)
+      }
+      return {
+        name: toEnum(item, types.Item)!,
+        count: itemStacks[item]
+      }
+    })
 }
 
 const getPlayerInfos = (infos: any): types.PlayerInfo[] => {
