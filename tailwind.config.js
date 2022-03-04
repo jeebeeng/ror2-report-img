@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
@@ -9,6 +11,18 @@ module.exports = {
     fontFamily: {
       rubik: ['Rubik'],
       roboto: ['Roboto Mono']
+    },
+    colors: {
+      report: '#1a1423',
+      white: colors.white,
+      black: colors.black,
+      yellow: colors.yellow,
+      red: colors.red,
+      sky: colors.sky,
+      teal: colors.teal,
+      lime: colors.lime,
+      pink: colors.pink,
+      cyan: colors.cyan
     }
   },
   plugins: []
