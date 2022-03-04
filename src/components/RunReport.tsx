@@ -55,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ text }) => {
 const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
   return (
     <div className="flex flex-row justify-between pb-2">
-      <div className="flex flex-row">
+      <div className="flex flex-row mt-2">
         <img
           className="h-16 mt-2"
           src={path.survivorImg(survivor)}
@@ -66,6 +66,7 @@ const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
       {killer && (
         <div className="flex flex-col items-center pt-1">
           <p className="text-white text-sm">Killed By: </p>
+          <p className="text-yellow-300 text-sm">{killer}</p>
           <img className="h-12" src={path.bodyNameImg(killer)} alt={killer} />
         </div>
       )}
@@ -75,7 +76,7 @@ const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
 
 const Artifacts: React.FC<ArtifactsProps> = ({ artifacts }) => {
   return (
-    <div className="flex flex-col items-center mt-3">
+    <div className="flex flex-col items-center mt-3 mb-0 pb-0">
       <Header text="Artifacts" />
       <div className="flex flex-row flex-wrap w-64 justify-center">
         {artifacts.map(artifact => {
@@ -97,7 +98,7 @@ const StatLine: React.FC<StatLineProps> = ({ label, value }) => {
   return (
     <div className="flex flex-row justify-between">
       <p className="text-white">{label}:</p>
-      <p className="text-yellow-200">{value}</p>
+      <p className="text-yellow-300">{value}</p>
     </div>
   )
 }
@@ -177,14 +178,14 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
     } else if (text === types.GameEnding.MainEnding) {
       return <h1 className="text-lime-500 text-5xl">{text.toUpperCase()}</h1>
     } else if (text === types.GameEnding.ObliterationEnding) {
-      return <h1 className="text-teal-700 text-4xl">{text.toUpperCase()}</h1>
+      return <h1 className="text-teal-700 text-[42px]">{text.toUpperCase()}</h1>
     } else {
       return <h1 className="text-red-800 text-5xl">{text.toUpperCase()}</h1>
     }
   }
 
   return (
-    <div className="text-center font-bold mb-2 mt-4 font-rubik tracking-wide">
+    <div className="text-center font-bold mb-2 mt-4 tracking-wide">
       {renderTitle()}
     </div>
   )
@@ -192,7 +193,7 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
 
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
-    <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-2 pb-3 my-2 rounded-xl">
+    <div className="bg-white">
       <ReportTitle
         text={
           report.gameMode === types.GameMode.InfiniteTowerRun
@@ -200,25 +201,27 @@ const Report: React.FC<RunReportProps> = ({ report }) => {
             : report.gameEnding
         }
       />
-      <Character
-        survivor={report.playerInfo.survivor}
-        killer={
-          report.playerInfo.killerBodyName !== types.BodyName.InvalidBody
-            ? report.playerInfo.killerBodyName
-            : null
-        }
-      />
-      {report.artifacts.length > 0 ? (
-        <Artifacts artifacts={report.artifacts} />
-      ) : null}
-      <Stats
-        runTime={report.runTime}
-        gameMode={report.gameMode}
-        difficulty={report.difficulty}
-        eclipseLevel={report.eclipseLevel ? report.eclipseLevel : null}
-        stats={report.playerInfo.statSheet}
-      />
-      <Items items={report.playerInfo.items} />
+      <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-2 pb-3 my-2 rounded-md border-black border-4">
+        <Character
+          survivor={report.playerInfo.survivor}
+          killer={
+            report.playerInfo.killerBodyName !== types.BodyName.InvalidBody
+              ? report.playerInfo.killerBodyName
+              : null
+          }
+        />
+        {report.artifacts.length > 0 ? (
+          <Artifacts artifacts={report.artifacts} />
+        ) : null}
+        <Stats
+          runTime={report.runTime}
+          gameMode={report.gameMode}
+          difficulty={report.difficulty}
+          eclipseLevel={report.eclipseLevel ? report.eclipseLevel : null}
+          stats={report.playerInfo.statSheet}
+        />
+        <Items items={report.playerInfo.items} />
+      </div>
     </div>
   )
 }
