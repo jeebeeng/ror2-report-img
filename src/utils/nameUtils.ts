@@ -15,7 +15,7 @@ export const artifactImg = (name: Artifact): string => {
 }
 
 export const bodyNameImg = (name: BodyName): string => {
-  return imagePath + 'bodies/' + name.replace(' ', '_') + '.png'
+  return imagePath + 'bodies/' + name.replaceAll(' ', '_') + '.png'
 }
 
 export const difficultyImg = (name: Difficulty): string => {
@@ -27,13 +27,13 @@ export const eclipseImg = (level: EclipseLevel): string => {
 }
 
 export const equipmentImg = (name: Equipment): string => {
-  return imagePath + 'equipment/' + name.replace(' ', '_') + '.png'
+  return imagePath + 'equipment/' + name.replaceAll(' ', '_') + '.png'
 }
 
 export const itemImg = (name: Item): string => {
-  return imagePath + 'items/' + name.replace(' ', '_') + '.png'
+  return imagePath + 'items/' + name.replaceAll(' ', '_') + '.png'
 }
 
 export const survivorImg = (name: Survivor): string => {
-  return imagePath + 'survivors/' + name.replace(' ', '_') + '.png'
+  return imagePath + 'survivors/' + name.replaceAll(' ', '_') + '.png'
 }
