@@ -9,6 +9,10 @@ interface RunReportProps {
   report: RunReport
 }
 
+interface ReportTitleProps {
+  text: string
+}
+
 interface HeaderProps {
   text: string
 }
@@ -166,9 +170,23 @@ const Items: React.FC<ItemsProps> = ({ items }) => {
   )
 }
 
+const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
+  return (
+    <h1 className="text-center text-5xl mb-4 font-rubik">
+      {text.toUpperCase()}
+    </h1>
+  )
+}
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
     <div className="font-roboto w-96 bg-slate-800 px-2 pt-2 pb-3 my-2 rounded-xl">
+      <ReportTitle
+        text={
+          report.gameMode === types.GameMode.InfiniteTowerRun
+            ? 'Simulacrum'
+            : report.gameEnding
+        }
+      />
       <Character
         survivor={report.playerInfo.survivor}
         killer={
