@@ -92,7 +92,7 @@ export enum Artifact {
 }
 
 export enum Item {
-  ParentEgg = 'Panula',
+  ParentEgg = 'Planula',
   FlatHealth = 'Bison Steak',
   Syringe = "Soldier's Syringe",
   Bear = 'Tougher Times',
