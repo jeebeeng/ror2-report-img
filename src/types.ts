@@ -263,7 +263,7 @@ export enum Item {
   LunarSun = 'EgoCentrism',
   MinorConstructionKill = 'Defense Nucleus',
   VoidMegaCrabItem = 'Newly Hatched Zoea',
-  ConvertCritChangeToCritDamage = 'RAILGUNNER PASSIVE'
+  ConvertCritChanceToCritDamage = 'RAILGUNNER PASSIVE'
 }
 
 export enum Equipment {
