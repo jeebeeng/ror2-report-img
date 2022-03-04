@@ -163,7 +163,7 @@ const Stats: React.FC<StatsProps> = ({
 
 const Items: React.FC<ItemsProps> = ({ items }) => {
   return (
-    <div className="mt-3">
+    <div className="mt-3 min-h-[145px]">
       <Header text="Items" />
       <div className="flex flex-row flex-wrap mt-1">
         {items.map(item => {
@@ -196,7 +196,7 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
 
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
-    <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-1 pb-4">
+    <div className="font-roboto w-96 bg-report px-2 pt-1 pb-4">
       <ReportTitle
         text={
           report.gameMode === types.GameMode.InfiniteTowerRun
