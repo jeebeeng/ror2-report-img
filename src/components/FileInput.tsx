@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { RunReport } from '../types'
 import { createRunReport } from '../utils/runReport'
 import { XMLParser } from 'fast-xml-parser'
@@ -8,6 +8,12 @@ interface FileInputProps {
 }
 
 const FileInput: React.FC<FileInputProps> = ({ setReport }) => {
+  const fileInput = useRef<HTMLInputElement>(null)
+
+  const handleClick = () => {
+    if (fileInput.current) fileInput.current.click()
+  }
+
   const showFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const reader = new FileReader()
@@ -27,12 +33,25 @@ const FileInput: React.FC<FileInputProps> = ({ setReport }) => {
   }
 
   return (
-    <input
-      type="file"
-      accept=".xml"
-      onChange={showFile}
-      className="rounded-lg"
-    />
+    <div
+      onClick={handleClick}
+      className="transition ease-in-out delay-50 group mt-7 mb-6 border-md border-4 px-4 py-3 rounded-3xl text-sm font-bold font-mono cursor-pointer hover:bg-black"
+    >
+      <label
+        htmlFor="upload-file"
+        className="transition ease-in-out delay-50 cursor-pointer group-hover:text-white"
+      >
+        Choose Report
+        <input
+          type="file"
+          accept=".xml"
+          onChange={showFile}
+          id="upload-file"
+          ref={fileInput}
+          className="opacity-0 z-[-1] absolute"
+        />
+      </label>
+    </div>
   )
 }
 
