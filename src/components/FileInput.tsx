@@ -26,7 +26,14 @@ const FileInput: React.FC<FileInputProps> = ({ setReport }) => {
     }
   }
 
-  return <input type="file" accept=".xml" onChange={showFile} />
+  return (
+    <input
+      type="file"
+      accept=".xml"
+      onChange={showFile}
+      className="rounded-lg"
+    />
+  )
 }
 
 export default FileInput
