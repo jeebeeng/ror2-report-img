@@ -67,9 +67,9 @@ export enum GameMode {
 }
 
 export enum GameEnding {
-  MainEnding = 'MainEnding',
-  ObliterationEnding = 'ObliterationEnding',
-  StandardLoss = 'StandardLoss'
+  MainEnding = 'Victory!',
+  ObliterationEnding = 'Fate Unknown...',
+  StandardLoss = 'Defeat!'
 }
 
 export enum Artifact {
