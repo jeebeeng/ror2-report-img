@@ -193,7 +193,7 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
 
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
-    <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-1 pb-4 rounded-md">
+    <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-1 pb-4">
       <ReportTitle
         text={
           report.gameMode === types.GameMode.InfiniteTowerRun
