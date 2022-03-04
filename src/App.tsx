@@ -17,7 +17,7 @@ const App: React.FC = () => {
     html2canvas(ref.current)
       .then(canvas => {
         const link = document.createElement('a')
-        link.download = `risk_report_${new Date().toJSON()}.png`
+        link.download = `risk_report.png`
         link.href = canvas.toDataURL('image/png')
         link.click()
       })
@@ -27,7 +27,7 @@ const App: React.FC = () => {
   }, [ref])
 
   return (
-    <div className="bg-white min-h-screen flex flex-col items-center">
+    <div className="bg-white min-h-screen flex flex-col items-center pb-4">
       <h1 className="text-6xl font-rubik tracking-wide my-4">RISK REPORT</h1>
       <FileInput setReport={setReport} setError={setError} />
       {report !== null && (
