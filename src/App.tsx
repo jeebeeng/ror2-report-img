@@ -17,8 +17,8 @@ const App: React.FC = () => {
     html2canvas(ref.current)
       .then(canvas => {
         const link = document.createElement('a')
-        link.download = `risk_report_${new Date().toJSON().slice(0, 10)}`
-        link.href = canvas.toDataURL()
+        link.download = `risk_report_${new Date().toJSON()}.png`
+        link.href = canvas.toDataURL('image/png')
         link.click()
       })
       .catch(err => {
