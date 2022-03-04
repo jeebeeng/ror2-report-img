@@ -32,7 +32,6 @@ export const equipmentImg = (name: Equipment): string => {
 }
 
 export const itemImg = (name: Item): string => {
-  console.log(fileName(name))
   return imagePath + 'items/' + fileName(name) + '.png'
 }
 
