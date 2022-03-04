@@ -10,7 +10,7 @@ interface RunReportProps {
 }
 
 interface ReportTitleProps {
-  text: string
+  text: types.GameEnding | types.GameMode.InfiniteTowerRun
 }
 
 interface HeaderProps {
@@ -64,7 +64,7 @@ const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
         <p className="text-white font-bold mt-12 ml-2">{survivor}</p>
       </div>
       {killer && (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pt-1">
           <p className="text-white text-sm">Killed By: </p>
           <img className="h-12" src={path.bodyNameImg(killer)} alt={killer} />
         </div>
@@ -171,17 +171,33 @@ const Items: React.FC<ItemsProps> = ({ items }) => {
 }
 
 const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
-  return <h1 className="text-center text-5xl mb-2 mt-2">{text}</h1>
+  const renderTitle = () => {
+    if (text === types.GameMode.InfiniteTowerRun) {
+      return <h1 className="text-pink-700 text-5xl">{text.toUpperCase()}</h1>
+    } else if (text === types.GameEnding.MainEnding) {
+      return <h1 className="text-lime-500 text-5xl">{text.toUpperCase()}</h1>
+    } else if (text === types.GameEnding.ObliterationEnding) {
+      return <h1 className="text-teal-700 text-4xl">{text.toUpperCase()}</h1>
+    } else {
+      return <h1 className="text-red-800 text-5xl">{text.toUpperCase()}</h1>
+    }
+  }
+
+  return (
+    <div className="text-center font-bold mb-2 mt-4 font-rubik tracking-wide">
+      {renderTitle()}
+    </div>
+  )
 }
 
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
-    <div className="font-roboto w-96 bg-report px-2 pt-2 pb-3 my-2 rounded-xl">
+    <div className="font-roboto min-h-[700px] w-96 bg-report px-2 pt-2 pb-3 my-2 rounded-xl">
       <ReportTitle
         text={
           report.gameMode === types.GameMode.InfiniteTowerRun
-            ? report.gameMode.toUpperCase()
-            : report.gameEnding.toUpperCase()
+            ? report.gameMode
+            : report.gameEnding
         }
       />
       <Character
