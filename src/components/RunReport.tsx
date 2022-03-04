@@ -22,6 +22,11 @@ interface ArtifactsProps {
   artifacts: types.Artifact[]
 }
 
+interface DifficultyProps {
+  difficulty: types.Difficulty
+  eclipseLevel: types.EclipseLevel | null
+}
+
 interface StatLineProps {
   label: string
   value: string
@@ -31,6 +36,7 @@ interface StatsProps {
   runTime: number
   gameMode: types.GameMode
   difficulty: types.Difficulty
+  eclipseLevel: types.EclipseLevel | null
   stats: types.StatSheet
 }
 
@@ -45,8 +51,17 @@ const Header: React.FC<HeaderProps> = ({ text }) => {
 const Character: React.FC<CharacterProps> = ({ survivor, killer }) => {
   return (
     <div className="flex flex-row justify-between">
-      <img src={path.survivorImg(survivor)} alt={survivor} />
-      {killer && <img src={path.bodyNameImg(killer)} alt={killer} />}
+      <img
+        className="h-16 mt-2"
+        src={path.survivorImg(survivor)}
+        alt={survivor}
+      />
+      {killer && (
+        <div>
+          <p className="text-white">Killed By:</p>
+          <img className="h-12" src={path.bodyNameImg(killer)} alt={killer} />
+        </div>
+      )}
     </div>
   )
 }
@@ -80,23 +95,41 @@ const StatLine: React.FC<StatLineProps> = ({ label, value }) => {
   )
 }
 
-const Stats: React.FC<StatsProps> = ({
-  runTime,
-  gameMode,
+const Difficulty: React.FC<DifficultyProps> = ({
   difficulty,
-  stats
+  eclipseLevel
 }) => {
   return (
-    <div className="mt-3">
-      <Header text="Stats" />
-      <div className="flex flex-row justify-between pb-1">
-        <p className="mt-4 text-white">{difficulty}</p>
+    <div className="flex flex-row justify-between pb-1">
+      <p className="mt-4 text-white">{difficulty}</p>
+      {eclipseLevel ? (
+        <img
+          className="h-10"
+          src={path.eclipseImg(eclipseLevel)}
+          alt="eclipseLevel"
+        />
+      ) : (
         <img
           className="h-10"
           src={path.difficultyImg(difficulty)}
           alt={difficulty}
         />
-      </div>
+      )}
+    </div>
+  )
+}
+
+const Stats: React.FC<StatsProps> = ({
+  runTime,
+  gameMode,
+  difficulty,
+  eclipseLevel,
+  stats
+}) => {
+  return (
+    <div className="mt-3">
+      <Header text="Stats" />
+      <Difficulty difficulty={difficulty} eclipseLevel={eclipseLevel} />
       <StatLine label="Time Alive" value={String(formatRunTime(runTime))} />
       {gameMode === types.GameMode.InfiniteTowerRun ? (
         <StatLine
@@ -118,7 +151,7 @@ const Items: React.FC<ItemsProps> = ({ items }) => {
   return (
     <div className="mt-3">
       <Header text="Items" />
-      <div className="flex flex-row flex-wrap">
+      <div className="flex flex-row flex-wrap mt-1">
         {items.map(item => {
           return <ItemIcon item={item} key={item.name} />
         })}
@@ -129,7 +162,7 @@ const Items: React.FC<ItemsProps> = ({ items }) => {
 
 const Report: React.FC<RunReportProps> = ({ report }) => {
   return (
-    <div className="w-96 bg-slate-800 px-2 pt-2 pb-3 my-2 rounded-md">
+    <div className="w-96 bg-slate-800 px-2 pt-2 pb-3 my-2 rounded-xl">
       <Character
         survivor={report.playerInfo.survivor}
         killer={
@@ -145,6 +178,7 @@ const Report: React.FC<RunReportProps> = ({ report }) => {
         runTime={report.runTime}
         gameMode={report.gameMode}
         difficulty={report.difficulty}
+        eclipseLevel={report.eclipseLevel ? report.eclipseLevel : null}
         stats={report.playerInfo.statSheet}
       />
       <Items items={report.playerInfo.items} />
