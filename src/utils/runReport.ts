@@ -109,10 +109,12 @@ const getStatSheet = (sheet: any): types.StatSheet => {
   if (sheet.hasOwnProperty('highestInfiniteTowerWaveReached')) {
     stats.highestInfiniteTowerWaveReached =
       sheet.highestInfiniteTowerWaveReached
-  }
-
-  if (sheet.hasOwnProperty('highestStagesCompleted')) {
-    stats.highestStagesCompleted = sheet.highestStagesCompleted
+  } else {
+    stats.highestStagesCompleted = sheet.hasOwnProperty(
+      'highestStagesCompleted'
+    )
+      ? sheet.highestStagesCompleted
+      : 1
   }
 
   checkInvalid(stats)
