@@ -43,7 +43,7 @@ const FileInput: React.FC<FileInputProps> = ({ setReport, setError }) => {
       className="text-center w-max transition ease-in-out delay-50 group mt-7 mb-4 border-md border-2 px-5 py-3 rounded-xl text-sm cursor-pointer hover:border-topBanner"
     >
       <label className="text-xl font-rubik transition ease-in-out delay-50 cursor-pointer group-hover:text-topBanner">
-        Choose Report
+        Select Report
       </label>
       <input
         type="file"
