@@ -6,9 +6,14 @@ import { XMLParser } from 'fast-xml-parser'
 interface FileInputProps {
   setReport: React.Dispatch<React.SetStateAction<RunReport | null>>
   setError: React.Dispatch<React.SetStateAction<boolean>>
+  setPlayerIndex: React.Dispatch<React.SetStateAction<number>>
 }
 
-const FileInput: React.FC<FileInputProps> = ({ setReport, setError }) => {
+const FileInput: React.FC<FileInputProps> = ({
+  setReport,
+  setError,
+  setPlayerIndex
+}) => {
   const fileInput = useRef<HTMLInputElement>(null)
 
   const handleClick = () => {
@@ -24,9 +29,11 @@ const FileInput: React.FC<FileInputProps> = ({ setReport, setError }) => {
         const xmlStr = e.target!.result
         const jObj = parser.parse(xmlStr as string)
         const report = createRunReport(jObj.RunReport)!
+        setPlayerIndex(0)
         setError(false)
         setReport(report)
       } catch (err) {
+        setPlayerIndex(0)
         setReport(null)
         setError(true)
       }
