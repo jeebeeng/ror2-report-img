@@ -4,6 +4,8 @@ import Report from './components/RunReport'
 import FileInput from './components/FileInput'
 import html2canvas from 'html2canvas'
 import DownloadButton from './components/DownloadButton'
+import TitleBanner from './components/TitleBanner'
+import IndexSelector from './components/IndexSelector'
 
 const App: React.FC = () => {
   const [report, setReport] = useState<RunReport | null>(null)
@@ -30,14 +32,17 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="grid place-items-center content-center bg-topBanner w-full text-center h-28">
-        <h1 className="text-7xl font-rubik tracking-wide text-white">
-          RISK REPORT
-        </h1>
-      </div>
+      <TitleBanner />
       <div className="flex flex-col items-center">
         <FileInput setReport={setReport} setError={setError} />
         {report !== null && <DownloadButton onClick={handleClick} />}
+        {report !== null && report.playerInfos.length > 1 && (
+          <IndexSelector
+            len={report.playerInfos.length}
+            playerIndex={playerIndex}
+            setPlayerIndex={setPlayerIndex}
+          />
+        )}
         {error && <h2 className="text-red-600 font-bold">Invalid Report</h2>}
         {report !== null && !error ? (
           <div className="bg-report p-1 pt-2 mb-3 rounded-xl">

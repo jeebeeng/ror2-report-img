@@ -23,7 +23,9 @@ module.exports = {
       teal: colors.teal,
       lime: colors.lime,
       pink: colors.pink,
-      cyan: colors.cyan
+      cyan: colors.cyan,
+      slate: colors.slate,
+      gray: colors.gray
     }
   },
   plugins: []
