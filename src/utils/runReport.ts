@@ -164,10 +164,8 @@ const getItems = (itemOrder: string, itemStacks: any): types.ItemData[] => {
 }
 
 const getPlayerInfos = (infos: any): types.PlayerInfo[] => {
-  if (Array.isArray(infos)) {
-    return infos.map((info: any) => {
-      return getPlayerInfo(info.PlayerInfo)
-    })
+  if (Array.isArray(infos.PlayerInfo)) {
+    return infos.PlayerInfo.map((info: any) => getPlayerInfo(info))
   } else {
     return [getPlayerInfo(infos.PlayerInfo)]
   }
