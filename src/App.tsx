@@ -49,8 +49,10 @@ const App: React.FC = () => {
         )}
         {error && <h2 className="text-red-600 font-bold">Invalid Report</h2>}
         {report !== null && !error ? (
-          <div ref={ref}>
-            <Report report={report!} />
+          <div className="bg-report p-1 pt-2 mb-3 rounded-xl">
+            <div ref={ref}>
+              <Report report={report!} />
+            </div>
           </div>
         ) : null}
       </div>
