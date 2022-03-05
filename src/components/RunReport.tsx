@@ -7,6 +7,7 @@ import * as types from '../types'
 
 interface RunReportProps {
   report: RunReport
+  playerIndex: number
 }
 
 interface ReportTitleProps {
@@ -194,7 +195,7 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
   )
 }
 
-const Report: React.FC<RunReportProps> = ({ report }) => {
+const Report: React.FC<RunReportProps> = ({ report, playerIndex }) => {
   return (
     <div className="font-roboto w-96 bg-report px-2 pt-1 pb-4">
       <ReportTitle
@@ -205,10 +206,11 @@ const Report: React.FC<RunReportProps> = ({ report }) => {
         }
       />
       <Character
-        survivor={report.playerInfo.survivor}
+        survivor={report.playerInfos[playerIndex].survivor}
         killer={
-          report.playerInfo.killerBodyName !== types.BodyName.InvalidBody
-            ? report.playerInfo.killerBodyName
+          report.playerInfos[playerIndex].killerBodyName !==
+          types.BodyName.InvalidBody
+            ? report.playerInfos[playerIndex].killerBodyName
             : null
         }
       />
@@ -220,9 +222,9 @@ const Report: React.FC<RunReportProps> = ({ report }) => {
         gameMode={report.gameMode}
         difficulty={report.difficulty}
         eclipseLevel={report.eclipseLevel ? report.eclipseLevel : null}
-        stats={report.playerInfo.statSheet}
+        stats={report.playerInfos[playerIndex].statSheet}
       />
-      <Items items={report.playerInfo.items} />
+      <Items items={report.playerInfos[playerIndex].items} />
     </div>
   )
 }

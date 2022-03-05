@@ -7,7 +7,7 @@ export interface RunReport {
   gameEnding: GameEnding
   gameMode: GameMode
   runTime: number
-  playerInfo: PlayerInfo
+  playerInfos: PlayerInfo[]
   artifacts: Artifact[]
 }
 

@@ -7,6 +7,7 @@ import { BsDownload } from 'react-icons/bs'
 
 const App: React.FC = () => {
   const [report, setReport] = useState<RunReport | null>(null)
+  const [playerIndex, setPlayerIndex] = useState<number>(0)
   const [error, setError] = useState<boolean>(false)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -51,7 +52,7 @@ const App: React.FC = () => {
         {report !== null && !error ? (
           <div className="bg-report p-1 pt-2 mb-3 rounded-xl">
             <div ref={ref}>
-              <Report report={report!} />
+              <Report report={report!} playerIndex={playerIndex} />
             </div>
           </div>
         ) : null}

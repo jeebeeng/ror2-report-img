@@ -164,9 +164,13 @@ const getItems = (itemOrder: string, itemStacks: any): types.ItemData[] => {
 }
 
 const getPlayerInfos = (infos: any): types.PlayerInfo[] => {
-  return infos.map((info: any) => {
-    return getPlayerInfo(info.PlayerInfo)
-  })
+  if (Array.isArray(infos)) {
+    return infos.map((info: any) => {
+      return getPlayerInfo(info.PlayerInfo)
+    })
+  } else {
+    return [getPlayerInfo(infos.PlayerInfo)]
+  }
 }
 
 const getPlayerInfo = (info: any): types.PlayerInfo => {
@@ -191,7 +195,7 @@ const getPlayerInfo = (info: any): types.PlayerInfo => {
 
 export const createRunReport = (obj: any): types.RunReport => {
   const ruleBook = getRuleBook(obj.ruleBook)
-  const playerInfo: types.PlayerInfo = getPlayerInfo(obj.playerInfos.PlayerInfo)
+  const playerInfos: types.PlayerInfo[] = getPlayerInfos(obj.playerInfos)
 
   let report: any = {
     version: obj.version,
@@ -200,7 +204,7 @@ export const createRunReport = (obj: any): types.RunReport => {
     runTime: obj.runStopwatchValue,
     difficulty: ruleBook.difficulty,
     artifacts: ruleBook.artifacts,
-    playerInfo
+    playerInfos
   }
 
   if (ruleBook.hasOwnProperty('eclipseLevel')) {
