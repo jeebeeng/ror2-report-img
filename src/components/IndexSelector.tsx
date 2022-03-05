@@ -34,7 +34,7 @@ const IndexSelector: React.FC<IndexSelectorProps> = ({
   setPlayerIndex
 }) => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row mt-2">
       {[...Array(len)].map((_, i) => {
         return (
           <Button

@@ -39,7 +39,6 @@ const App: React.FC = () => {
           setError={setError}
           setPlayerIndex={setPlayerIndex}
         />
-        {report !== null && <DownloadButton onClick={handleClick} />}
         {report !== null && report.playerInfos.length > 1 && (
           <IndexSelector
             len={report.playerInfos.length}
@@ -47,6 +46,7 @@ const App: React.FC = () => {
             setPlayerIndex={setPlayerIndex}
           />
         )}
+        {report !== null && <DownloadButton onClick={handleClick} />}
         {error && <h2 className="text-red-600 font-bold">Invalid Report</h2>}
         {report !== null && !error ? (
           <div className="bg-report p-1 pt-2 mb-3 rounded-xl">
