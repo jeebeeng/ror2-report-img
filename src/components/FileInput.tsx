@@ -40,9 +40,9 @@ const FileInput: React.FC<FileInputProps> = ({ setReport, setError }) => {
   return (
     <div
       onClick={handleClick}
-      className="transition ease-in-out delay-50 group mt-7 mb-4 border-md border-4 px-4 py-3 rounded-3xl text-sm font-bold font-mono cursor-pointer hover:bg-black"
+      className="text-center w-max transition ease-in-out delay-50 group mt-7 mb-4 border-md border-2 px-5 py-3 rounded-xl text-sm cursor-pointer hover:border-topBanner"
     >
-      <label className="transition ease-in-out delay-50 cursor-pointer group-hover:text-white">
+      <label className="text-xl font-rubik transition ease-in-out delay-50 cursor-pointer group-hover:text-topBanner">
         Choose Report
       </label>
       <input

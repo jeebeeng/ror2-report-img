@@ -14,6 +14,7 @@ module.exports = {
     },
     colors: {
       report: '#1a1423',
+      topBanner: '#00a7e1',
       white: colors.white,
       black: colors.black,
       yellow: colors.yellow,
