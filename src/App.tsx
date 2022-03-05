@@ -3,7 +3,7 @@ import { RunReport } from './types'
 import Report from './components/RunReport'
 import FileInput from './components/FileInput'
 import html2canvas from 'html2canvas'
-import { BsDownload } from 'react-icons/bs'
+import DownloadButton from './components/DownloadButton'
 
 const App: React.FC = () => {
   const [report, setReport] = useState<RunReport | null>(null)
@@ -37,17 +37,7 @@ const App: React.FC = () => {
       </div>
       <div className="flex flex-col items-center">
         <FileInput setReport={setReport} setError={setError} />
-        {report !== null && (
-          <button
-            onClick={handleClick}
-            className="font-bold mb-8 mt-1 text-cyan-500 transition ease-in-out delay-50 hover:text-sky-900 underline"
-          >
-            <div className="flex flex-row">
-              <BsDownload className="mt-1" />
-              DOWNLOAD
-            </div>{' '}
-          </button>
-        )}
+        {report !== null && <DownloadButton onClick={handleClick} />}
         {error && <h2 className="text-red-600 font-bold">Invalid Report</h2>}
         {report !== null && !error ? (
           <div className="bg-report p-1 pt-2 mb-3 rounded-xl">
