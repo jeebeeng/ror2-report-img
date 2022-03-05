@@ -27,6 +27,7 @@ const Button: React.FC<ButtonProps> = ({ index, playerIndex, onClick }) => {
     </button>
   )
 }
+
 const IndexSelector: React.FC<IndexSelectorProps> = ({
   len,
   playerIndex,
@@ -37,6 +38,7 @@ const IndexSelector: React.FC<IndexSelectorProps> = ({
       {[...Array(len)].map((_, i) => {
         return (
           <Button
+            key={i}
             index={i}
             playerIndex={playerIndex}
             onClick={setPlayerIndex}
