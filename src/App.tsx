@@ -34,7 +34,11 @@ const App: React.FC = () => {
     <div className="bg-white min-h-screen">
       <TitleBanner />
       <div className="flex flex-col items-center">
-        <FileInput setReport={setReport} setError={setError} />
+        <FileInput
+          setReport={setReport}
+          setError={setError}
+          setPlayerIndex={setPlayerIndex}
+        />
         {report !== null && <DownloadButton onClick={handleClick} />}
         {report !== null && report.playerInfos.length > 1 && (
           <IndexSelector
