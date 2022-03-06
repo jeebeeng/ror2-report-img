@@ -39,6 +39,17 @@ const App: React.FC = () => {
           setError={setError}
           setPlayerIndex={setPlayerIndex}
         />
+        {report === null && (
+          <div className="text-center text-gray-400 text-sm">
+            <p>
+              Run reports can be found in your Risk of Rain 2 game directory
+            </p>
+            <p>
+              (Steam/steamapps/common/Risk of Rain 2/Risk of Rain
+              2_Data/RunReports/History)
+            </p>
+          </div>
+        )}
         {report !== null && report.playerInfos.length > 1 && (
           <IndexSelector
             len={report.playerInfos.length}
