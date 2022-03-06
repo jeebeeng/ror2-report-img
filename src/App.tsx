@@ -31,7 +31,7 @@ const App: React.FC = () => {
   }, [ref])
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen w-max-screen">
       <TitleBanner />
       <div className="flex flex-col items-center">
         <FileInput
@@ -60,9 +60,14 @@ const App: React.FC = () => {
         {report !== null && <DownloadButton onClick={handleClick} />}
         {error && <h2 className="text-red-600 font-bold">Invalid Report</h2>}
         {report !== null && !error ? (
-          <div className="bg-report p-1 pt-2 mb-3 rounded-xl">
-            <div ref={ref}>
-              <Report report={report!} playerIndex={playerIndex} />
+          <div>
+            <p className="text-center font-rubik mb-2 font-bold text-lg">
+              {report.playerInfos[playerIndex].name}
+            </p>
+            <div className="bg-report p-1 pt-2 mb-3 rounded-xl">
+              <div ref={ref}>
+                <Report report={report!} playerIndex={playerIndex} />
+              </div>
             </div>
           </div>
         ) : null}
