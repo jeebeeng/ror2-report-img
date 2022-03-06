@@ -179,13 +179,29 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
   const renderTitle = () => {
     if (text === types.GameMode.InfiniteTowerRun) {
       return <h1 className="text-pink-700 text-4xl">{text.toUpperCase()}</h1>
-    } else if (text === types.GameEnding.MainEnding) {
+    }
+
+    if (text === types.GameEnding.MainEnding) {
       return <h1 className="text-lime-500 text-5xl">{text.toUpperCase()}</h1>
-    } else if (text === types.GameEnding.ObliterationEnding) {
-      return <h1 className="text-sky-700 text-4xl">{text.toUpperCase()}</h1>
-    } else {
+    }
+
+    if (text === types.GameEnding.PrismaticTrialEnding) {
+      return <h1 className="text-lime-500 text-3xl">{text.toUpperCase()}</h1>
+    }
+
+    if (text === types.GameEnding.LimboEnding) {
+      return <h1 className="text-purple-700 text-4xl">{'FATE UNKNOWN..'}</h1>
+    }
+
+    if (text === types.GameEnding.ObliterationEnding) {
+      return <h1 className="text-sky-700 text-4xl">{'FATE UNKNOWN..'}</h1>
+    }
+
+    if (text === types.GameEnding.StandardLoss) {
       return <h1 className="text-red-800 text-5xl">{text.toUpperCase()}</h1>
     }
+
+    return null
   }
 
   return (

@@ -63,13 +63,16 @@ export enum Difficulty {
 export enum GameMode {
   EclipseRun = 'Eclipse',
   ClassicRun = 'Classic',
+  WeeklyRun = 'Prismatic Trial',
   InfiniteTowerRun = 'Simulacrum'
 }
 
 export enum GameEnding {
   MainEnding = 'Victory!',
-  ObliterationEnding = 'Fate Unknown...',
-  StandardLoss = 'Defeat!'
+  ObliterationEnding = 'Obliteration',
+  StandardLoss = 'Defeat!',
+  LimboEnding = 'Limbo',
+  PrismaticTrialEnding = 'Prismatic Trial Victory!'
 }
 
 export enum Artifact {
