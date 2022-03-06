@@ -31,7 +31,7 @@ const App: React.FC = () => {
   }, [ref])
 
   return (
-    <div className="bg-white min-h-screen w-max-screen">
+    <div className="bg-white min-h-screen w-max-full">
       <TitleBanner />
       <div className="flex flex-col items-center">
         <FileInput
