@@ -2,10 +2,12 @@ import React, { useState, useRef, useCallback } from 'react'
 import { RunReport } from './types'
 import Report from './components/RunReport'
 import FileInput from './components/FileInput'
-import html2canvas from 'html2canvas'
 import DownloadButton from './components/DownloadButton'
+import CopyButton from './components/CopyButton'
 import TitleBanner from './components/TitleBanner'
 import IndexSelector from './components/IndexSelector'
+import html2canvas from 'html2canvas'
+import { copyImageToClipboard } from 'copy-image-clipboard'
 
 const App: React.FC = () => {
   const [report, setReport] = useState<RunReport | null>(null)
@@ -13,7 +15,24 @@ const App: React.FC = () => {
   const [error, setError] = useState<boolean>(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const handleClick = useCallback(() => {
+  const handleCopy = useCallback(() => {
+    if (ref.current === null) {
+      return
+    }
+
+    html2canvas(ref.current)
+      .then(canvas => {
+        const link = canvas.toDataURL('image/png')
+        copyImageToClipboard(link).catch(err => {
+          console.log(err)
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [ref])
+
+  const handleDownload = useCallback(() => {
     if (ref.current === null) {
       return
     }
@@ -57,7 +76,13 @@ const App: React.FC = () => {
             setPlayerIndex={setPlayerIndex}
           />
         )}
-        {report !== null && <DownloadButton onClick={handleClick} />}
+        {report !== null && (
+          <div className="flex flex-row">
+            <CopyButton onClick={handleCopy} />
+            <p className="mx-3"> | </p>
+            <DownloadButton onClick={handleDownload} />
+          </div>
+        )}
         {error && <h2 className="text-red-600 font-bold">Invalid Report</h2>}
         {report !== null && !error ? (
           <div>

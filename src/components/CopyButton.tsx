@@ -1,22 +1,22 @@
 import React from 'react'
-import { BsDownload } from 'react-icons/bs'
+import { MdContentCopy } from 'react-icons/md'
 
-interface DownloadButtonProps {
+interface CopyButtonProps {
   onClick: () => void
 }
 
-const DownloadButton: React.FC<DownloadButtonProps> = ({ onClick }) => {
+const CopyButton: React.FC<CopyButtonProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
       className="font-bold mb-5 text-cyan-500 transition ease-in-out delay-50 hover:text-sky-900 underline"
     >
       <div className="flex flex-row">
-        <BsDownload className="mt-1" />
-        DOWNLOAD
+        <MdContentCopy className="mt-1" />
+        COPY
       </div>
     </button>
   )
 }
 
-export default DownloadButton
+export default CopyButton
