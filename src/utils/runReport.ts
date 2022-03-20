@@ -208,6 +208,7 @@ export const createRunReport = (obj: any): types.RunReport => {
   if (ruleBook.hasOwnProperty('eclipseLevel')) {
     report.eclipseLevel = ruleBook.eclipseLevel
   }
+  console.log(report)
 
   checkInvalid(report)
 

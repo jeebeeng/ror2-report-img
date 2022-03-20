@@ -71,7 +71,7 @@ export enum GameEnding {
   MainEnding = 'Victory!',
   ObliterationEnding = 'Obliteration',
   StandardLoss = 'Defeat!',
-  LimboEnding = 'Limbo',
+  VoidEnding = 'Limbo',
   PrismaticTrialEnding = 'Prismatic Trial Victory!'
 }
 
@@ -223,7 +223,7 @@ export enum Item {
   AttackSpeedAndMoveSpeed = 'Mocha',
   PrimarySkillShuriken = 'Shuriken',
   CritDamage = 'Laser Scope',
-  DroneWeapns = 'Spare Drone Parts',
+  DroneWeapons = 'Spare Drone Parts',
   MoveSpeedOnKill = "Hunter's Harpoon",
   StrengthenBurn = 'Ignition Tank',
   HealingPotion = 'Power Elixir',
