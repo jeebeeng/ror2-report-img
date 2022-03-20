@@ -146,12 +146,12 @@ const getItems = (itemOrder: string, itemStacks: any): types.ItemData[] => {
     types.Item.ConvertCritChanceToCritDamage
   ] as string[]
 
-  return itemOrder
-    .split(' ')
-    .filter(item => {
-      return !badItems.includes(toEnum(item, types.Item)!)
-    })
-    .map(item => {
+  const list = itemOrder.split(' ').filter(item => {
+    return !badItems.includes(toEnum(item, types.Item)!)
+  })
+
+  if (list.length !== 0) {
+    const items = list.map(item => {
       const stacks = itemStacks[item]
       if (!stacks) {
         throw new Error(INVALID_ERROR)
@@ -161,6 +161,10 @@ const getItems = (itemOrder: string, itemStacks: any): types.ItemData[] => {
         count: itemStacks[item]
       }
     })
+
+    return items
+  }
+  return []
 }
 
 const getPlayerInfos = (infos: any): types.PlayerInfo[] => {
@@ -208,7 +212,6 @@ export const createRunReport = (obj: any): types.RunReport => {
   if (ruleBook.hasOwnProperty('eclipseLevel')) {
     report.eclipseLevel = ruleBook.eclipseLevel
   }
-  console.log(report)
 
   checkInvalid(report)
 
