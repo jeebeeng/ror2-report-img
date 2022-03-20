@@ -189,7 +189,7 @@ const ReportTitle: React.FC<ReportTitleProps> = ({ text }) => {
       return <h1 className="text-lime-500 text-3xl">{text.toUpperCase()}</h1>
     }
 
-    if (text === types.GameEnding.LimboEnding) {
+    if (text === types.GameEnding.VoidEnding) {
       return <h1 className="text-purple-700 text-4xl">{'FATE UNKNOWN..'}</h1>
     }
 
